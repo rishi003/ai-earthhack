@@ -1,0 +1,14 @@
+# Ignore Streamlit secrets and sensitive information
+.st.secrets/
+
+# Ignore any generated files, dependencies, or virtual environments
+.venv/
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore log files and temporary files
+*.log
+*.cache
+.env
+data/chroma
