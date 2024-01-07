@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Model Evaluator</title>
+</head>
+<body>
+    <h1>Inputs</h1>
+
+    <h2>Problem</h2>
+    <p id="problem"></p>
+
+    <h2>Solution</h2>
+    <p id="statement"></p>
+
+    <h1>Idea Validation</h1>
+    <p id="ideaViability"></p>
+
+    <h1>Industry</h1>
+    <p id="industry"></p>
+
+    <h1>Sustainability</h1>
+    <p id="sustainability"></p>
+
+    <h1>Competition</h1>
+    <p id="competition"></p>
+
+    <h1 >Financials</h1>
+    <p id="financials"></p>
+
+    <h1>References</h1>
+    <p id="references"></p>
+
+    <script>
+        // Function to insert JSON data into the HTML elements
+        function insertData(jsonObject) {
+            document.getElementById("problem").textContent = jsonObject.problem;
+            document.getElementById("statement").textContent = jsonObject.statement;
+            document.getElementById("ideaViability").textContent = jsonObject.ideaViability;
+            document.getElementById("industry").textContent = jsonObject.industry;
+            document.getElementById("sustainability").textContent = jsonObject.sustainability;
+            document.getElementById("competition").textContent = jsonObject.competition;
+            document.getElementById("financials").textContent = jsonObject.financials;
+        }
+
+        // test data
+        var jsonObject = {
+            "problem": "This is a problem",
+            "statement": "This is a statement",
+            "ideaViability": "This is an idea viability",
+            "industry": "This is an industry",
+            "sustainability": "This is a sustainability",
+            "competition": "This is a competition",
+            "financials": "This is a financials"
+        };
+
+        // Call the function to insert data
+        insertData(jsonObject);
+    </script>
+</body>
+</html>
