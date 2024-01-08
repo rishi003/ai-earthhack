@@ -78,7 +78,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Load the custom CSS
-local_css("check.css")  # You need to create a CSS file with your styles
+# local_css("check.css")  # You need to create a CSS file with your styles
 
 # Title and logo at the top of the page
 col1, col2 = st.columns([1, 10])
