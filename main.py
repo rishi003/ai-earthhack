@@ -3,7 +3,7 @@ import streamlit as st
 import json
 from dotenv import load_dotenv
 from actions.start_analysis import start_analysis
-from agents import validity, sustainability, industry, report, financial
+from agents import validity, sustainability, industry, report, financial, market
 
 
 load_dotenv()
@@ -123,7 +123,9 @@ def main_page():
                         st.subheader("Sustainability Analysis")
                         st.json(generated_report['sustainability'])
 
-                    # Add additional sections as needed, similar to the above
+                    if 'competition' in generated_report:
+                        st.subheader("Competition Analysis")
+                        st.json(generated_report['competition'])
                 else:
                     st.error("No data returned from the analysis.")
             else:
@@ -190,7 +192,29 @@ def main_page():
 
     with tab4:
         st.header("Competition")
-        # Include content and widgets for the Finance tab
+
+        # The form for inputting the business competition problem
+        with st.form(key='competition_form'):
+            investment_problem = st.text_area("Describe the business sustainability problem:")
+            proposed_solution = st.text_area("Describe the proposed solution:")
+            submit_button = st.form_submit_button(label='Get Competition Analysis')
+
+        # When the user submits the form
+        if submit_button and investment_problem and proposed_solution:
+            # Generate competition analysis
+            industry_analysis = industry.industry_analysis(investment_problem, proposed_solution)
+            industry_name = industry_analysis["industry"]
+            
+            # Perform the sustainability assessment
+            result = market.search_competitors(investment_problem, proposed_solution, industry_name)
+            similar = result["competitors"]
+            result = market.analyse_competitors(investment_problem, proposed_solution, industry_name, similar)
+            
+            # Display the result
+            st.success("Competition Analysis:")
+            st.json(result)  # Display the JSON result directly
+        elif submit_button:
+            st.warning("Please enter a description of the business competition problem and the proposed solution.")
 
     # Main content area - could be filled with relevant widgets and content
     st.write("Main content area")
